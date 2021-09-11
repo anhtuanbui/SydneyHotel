@@ -1,0 +1,74 @@
+﻿@model SydneyHotel.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventTime.EventTimeView)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventTime.EventTimeView)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventType.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventType.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.ObjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.ObjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ObjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ObjectName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
