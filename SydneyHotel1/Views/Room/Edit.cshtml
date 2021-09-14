@@ -24,7 +24,10 @@
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
 
                 <img src="~/Images/@ViewBag.Image" alt="File image" width="200"/>
-                <input class="btn" type="file" name="ImageFile"/>
+
+                <label class="btn btn-default">
+                    <input type="file" name="ImageFile" />
+                </label>
             </div>
         </div>
 

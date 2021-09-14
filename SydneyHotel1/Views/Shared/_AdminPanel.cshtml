@@ -1,0 +1,21 @@
+﻿@{
+    if (ViewBag.Role == "Admin")
+    {
+        <div id="AdminPanel">
+            <h3>Admin Panel</h3>
+            <p>@Html.ActionLink("Account", "Index", "Account")</p>
+            <p>@Html.ActionLink("Availability", "Index", "Availability")</p>
+            <p>@Html.ActionLink("Booking", "Index", "Booking")</p>
+            <p>@Html.ActionLink("Event", "Index", "Event")</p>
+            <p>@Html.ActionLink("Event Register", "Index", "EventRegister")</p>
+            <p>@Html.ActionLink("Event Role", "Index", "EventRole")</p>
+            <p>@Html.ActionLink("Event Type", "Index", "EventType")</p>
+            <p>@Html.ActionLink("Role", "Index", "Role")</p>
+            <p>@Html.ActionLink("Room", "Index", "Room")</p>
+            <p>@Html.ActionLink("Room Type", "Index", "RoomType")</p>
+            <p>@Html.ActionLink("Time", "Index", "Time")</p>
+        </div>
+    }
+}
+
+

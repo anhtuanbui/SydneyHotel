@@ -1,0 +1,77 @@
+﻿/*css working with login area*/
+.logo {
+    color:white !important;
+}
+
+.logo:hover {
+    color: #9b9b9b !important;
+}
+
+.text-white {
+    color: white;
+}
+
+.middle-veritcal {
+    vertical-align: middle;
+}
+
+.flex-box {
+    display: flex;
+    align-items: center;
+}
+
+.flex-items {
+    flex-grow: inherit;
+}
+
+.loginArea {
+    display: flex !important;
+}
+
+    .loginArea > a {
+        padding: 10px;
+        color: #9d9d9d;
+    }
+
+.loginArea > a:hover {
+    text-decoration:none;
+    color:white;
+}
+
+/*css for id*/
+/*Admin panel*/
+#AdminPanel {
+    width: 12%;
+    position: absolute;
+    left: 0;
+    border-radius: 5px;
+    min-width: 150px;
+}
+
+    #AdminPanel > p {
+        padding: 5px;
+        background-color: #eeeeee;
+        margin: 0;
+    }
+
+        #AdminPanel > p:hover {
+            background-color: #cccccc;
+        }
+
+    #AdminPanel > a:hover {
+        text-decoration: none;
+    }
+
+
+/*css for table div*/
+.table-container {
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
+}
+
+/*Room list css*/
+.roomImg {
+    width:500px;
+    max-width: 100%;
+}

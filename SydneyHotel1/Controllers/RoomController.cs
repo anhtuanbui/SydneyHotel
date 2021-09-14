@@ -35,6 +35,12 @@ namespace SydneyHotel1.Controllers
             }
         }
 
+        public ActionResult List()
+        {
+            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType);
+            return View(rooms.ToList());
+        }
+
         // GET: Room
         public ActionResult Index()
         {

@@ -4,16 +4,98 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.Cookies;
 using SydneyHotel.Models;
 using SydneyHotel1.Data;
+using System.Web.UI.WebControls;
+using Microsoft.Owin.Security;
 
 namespace SydneyHotel1.Controllers
 {
     public class AccountController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
+
+        // Register
+        public ActionResult Register()
+        {
+            ViewBag.GenderId = new SelectList(db.Genders, "Id", "ObjectName");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register([Bind(Include = "ID,FirstName,LastName,EmailAddress,Password,GenderId,DateofBirth,Role")] Account account)
+        {
+            account.RoleId = 1;
+            account.GenderId = 3;
+
+            if (ModelState.IsValid)
+            {
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.GenderId = new SelectList(db.Genders, "Id", "ObjectName", account.GenderId);
+            return View(account);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "EmailAddress,Password")] Account account)
+        {
+
+            //var accounts = db.Accounts.Include(a => a.Gender).Include(a => a.Role);
+
+            var isvalidUser = account.EmailAddress == "Admin@gmail.com" && account.Password == "123456";
+
+            if (!isvalidUser)
+            {
+                ModelState.AddModelError("", "Invalid Username and Password");
+            }
+            else
+            {
+                if (Request.Cookies["UserName"] != null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                HttpCookie httpCookie = new HttpCookie("UserName", account.EmailAddress.ToString());
+
+                httpCookie.Expires.AddDays(3);
+
+                HttpContext.Response.SetCookie(httpCookie);
+
+                HttpCookie newCookie = Request.Cookies["UserName"];
+
+                ViewBag.UserName = newCookie;
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            if (Request.Cookies["UserName"].Value != null)
+            {
+                Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(-5);
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
         // GET: Account
         public ActionResult Index()

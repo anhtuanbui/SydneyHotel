@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SydneyHotel.Models.Room>
+
+
+@foreach (var item in Model)
+{
+    <div>
+        <div class="section-image">
+            <img class="image" src="~/Images/@item.Image" />
+        </div>
+        <div class="section-info">
+            <h2 class="title">@item.ObjectName</h2>
+            <p class="item">Room type: @item.RoomType.ObjectName</p>
+            <p class="item">Capacity: @item.Space</p>
+        </div>
+    </div>
+}
+
+

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SydneyHotel.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -44,5 +45,6 @@ namespace SydneyHotel1.Data
         public System.Data.Entity.DbSet<SydneyHotel.Models.EventRole> EventRoles { get; set; }
 
         public System.Data.Entity.DbSet<SydneyHotel.Models.RoomType> RoomTypes { get; set; }
+
     }
 }
