@@ -1,5 +1,11 @@
 ﻿@{
-    if (ViewBag.Role == "Admin")
+    var role = "";
+    if (Session["Role"] != null)
+    {
+        role = Session["Role"].ToString();
+
+    }
+    if (role == "Admin")
     {
         <div id="AdminPanel">
             <h3>Admin Panel</h3>

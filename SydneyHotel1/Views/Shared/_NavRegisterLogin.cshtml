@@ -1,14 +1,7 @@
-﻿@{
-    if (Request.Cookies["UserName"] != null)
-    {
-        ViewBag.User = Request.Cookies["UserName"].Value;
-
-    }
-}
-
+﻿
 <div class="navbar-collapse collapse" style="margin-left:auto; margin-right:0;">
     <div class="loginArea">
-        @if (Request.Cookies["UserName"] == null)
+        @if (Session["ID"] == null)
         {
             @Html.ActionLink("Login", "Login", "Account")
             @Html.ActionLink("Register", "Register", "Account")
@@ -17,7 +10,7 @@
         {
             <form method="post" action="/Account/Logout">
                 <div class="input-group flex-box">
-                    <span class="text-white">@ViewBag.User</span>
+                    <a class="btn btn-link" href="#">@Session["UserName"]</a>
                     <button type="submit" name="Logout" class="btn btn-link">Logout</button>
                 </div>
             </form>

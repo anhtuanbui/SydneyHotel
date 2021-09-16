@@ -1,0 +1,74 @@
+﻿@using SydneyHotel.Models
+@model SydneyHotel.Models.Booking
+
+@{ 
+    Room room = ViewBag.Room;
+}
+
+<h1>Booking</h1>
+
+<div class="room-box clear-border">
+    <div class="room-image">
+        <img class="room-img" src="~/Images/@room.Image" />
+    </div>
+    <div class="room-info">
+        <h2 class="title">@room.ObjectName</h2>
+        <p class="item">Room type: @room.RoomType.ObjectName</p>
+        <p class="item">Capacity: @room.Space</p>
+
+    </div>
+
+    <div class="room-last">
+        <p>$@room.RoomType.Price</p>
+    </div>
+</div>
+
+<form method="post" action="/Booking/Room/@room.Id">
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal row fill-form">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.NumberOfPeople, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.NumberOfPeople, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberOfPeople, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.TimeId, "Time", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-6">
+                @Html.DropDownList("TimeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TimeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <input type="submit" value="Book" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</form>

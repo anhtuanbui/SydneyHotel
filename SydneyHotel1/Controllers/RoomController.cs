@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SydneyHotel.Models;
+using SydneyHotel1.Data;
+using System;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SydneyHotel.Models;
-using SydneyHotel1.Data;
 
 namespace SydneyHotel1.Controllers
 {
@@ -22,22 +21,26 @@ namespace SydneyHotel1.Controllers
             {
                 // Image File controller 
                 // File name string
-                string fileName = Path.GetFileNameWithoutExtension(room.ImageFile.FileName);
-                string fileExtension = Path.GetExtension(room.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(room.ImageFile.FileName.Trim());
+                string fileExtension = Path.GetExtension(room.ImageFile.FileName.Trim());
                 fileName = fileName + DateTime.Now.ToString("yymmssffff") + fileExtension;
 
                 // set file name
-                room.Image = fileName;
+                room.Image = fileName.Trim();
 
                 // Set file to the path and save file
                 fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
                 room.ImageFile.SaveAs(fileName);
             }
+            else
+            {
+                room.Image = db.Rooms.Find(room.Id).Image;
+            }
         }
 
         public ActionResult List()
         {
-            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType);
+            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType).Where(r => r.Image != null);
             return View(rooms.ToList());
         }
 
@@ -121,8 +124,8 @@ namespace SydneyHotel1.Controllers
             if (ModelState.IsValid)
             {
                 UploadImage(room);
-
-                db.Entry(room).State = EntityState.Modified;
+                Debug.Print("MyDebug: " + room.Values().ToString());
+                db.Entry(db.Rooms.Find(room.Id)).CurrentValues.SetValues(room);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

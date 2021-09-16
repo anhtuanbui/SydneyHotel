@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace SydneyHotel.Models
 {
@@ -25,6 +23,19 @@ namespace SydneyHotel.Models
 
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
+
+        public string Values()
+        {
+            List<string> values = new List<string>();
+            values.Add(this.Id.ToString());
+            values.Add(this.ObjectName);
+            values.Add(this.Image);
+            values.Add(this.RoomTypeId.ToString());
+            values.Add(this.AvailabilityId.ToString());
+            values.Add(this.Space.ToString());
+            values.Add(this.Priority.ToString());
+            return string.Join(", ", values.ToArray());
+        }
     }
 
     public class RoomType : MyObject

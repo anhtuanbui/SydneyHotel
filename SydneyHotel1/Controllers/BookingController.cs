@@ -1,19 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SydneyHotel.Models;
+using SydneyHotel1.Data;
+using System;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SydneyHotel.Models;
-using SydneyHotel1.Data;
 
 namespace SydneyHotel1.Controllers
 {
     public class BookingController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
+
+        // Allow user to use this page
+        // GET
+        public ActionResult Room(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Room = room;
+
+            ViewBag.TimeId = new SelectList(db.Times, "Id", "ObjectName");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Room([Bind(Include = "ID,NumberOfPeople,StartDate,EndDate,TimeId")] Booking booking, int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Room = room;
+            booking.RoomID = (int)id;
+            booking.AccountId = (int)Session["ID"];
+
+            if (ModelState.IsValid)
+            {
+                db.Bookings.Add(booking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.TimeId = new SelectList(db.Times, "Id", "ObjectName", booking.TimeId);
+            return View(booking);
+        }
+
 
         // GET: Booking
         public ActionResult Index()

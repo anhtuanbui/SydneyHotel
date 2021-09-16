@@ -1,18 +1,36 @@
 ﻿@model IEnumerable<SydneyHotel.Models.Room>
 
+<div class="list-box">
+    <h1>Room List</h1>
 
-@foreach (var item in Model)
-{
-    <div>
-        <div class="section-image">
-            <img class="image" src="~/Images/@item.Image" />
+    @foreach (var item in Model)
+    {
+        <div class="room-box">
+            <div class="room-image">
+                <img class="room-img" src="~/Images/@item.Image" />
+            </div>
+            <div class="room-info">
+                <h2 class="title">@item.ObjectName</h2>
+                <p class="item">Room type: @item.RoomType.ObjectName</p>
+                <p class="item">Capacity: @item.Space</p>
+
+            </div>
+
+            <div class="room-last">
+                <p>$@item.RoomType.Price</p>
+                @{
+                    if (Session["ID"] != null)
+                    {
+                        <a class="btn btn-default" href="/Booking/Room/@item.Id">Book</a>
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="/Account/Login">Book</a>
+                    }
+                }
+            </div>
         </div>
-        <div class="section-info">
-            <h2 class="title">@item.ObjectName</h2>
-            <p class="item">Room type: @item.RoomType.ObjectName</p>
-            <p class="item">Capacity: @item.Space</p>
-        </div>
-    </div>
-}
+    }
 
-
+</div>

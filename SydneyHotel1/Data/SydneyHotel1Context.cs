@@ -1,9 +1,4 @@
-﻿using SydneyHotel.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace SydneyHotel1.Data
 {
@@ -15,7 +10,7 @@ namespace SydneyHotel1.Data
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-    
+
         public SydneyHotel1Context() : base("name=SydneyHotel1Context")
         {
         }

@@ -7,8 +7,9 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Create", "Room", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+@*@using (Html.BeginForm("Create", "Room", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {*@
+<form method="post" action="/Room/Edit" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -21,13 +22,13 @@
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
 
-                <img src="~/Images/@ViewBag.Image" alt="File image" width="200"/>
+                <img src="~/Images/@ViewBag.Image" alt="File image" width="200" />
 
-                <label class="btn btn-default">
-                    <input type="file" name="ImageFile" />
-                </label>
+
+                <input id="file" type="file" name="ImageFile" value="@ViewBag.Image" />
+
             </div>
         </div>
 
@@ -77,7 +78,8 @@
             </div>
         </div>
     </div>
-}
+</form>
+@*}*@
 
 <div>
     @Html.ActionLink("Back to List", "Index")

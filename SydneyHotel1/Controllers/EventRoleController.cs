@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SydneyHotel.Models;
+using SydneyHotel1.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SydneyHotel.Models;
-using SydneyHotel1.Data;
 
 namespace SydneyHotel1.Controllers
 {

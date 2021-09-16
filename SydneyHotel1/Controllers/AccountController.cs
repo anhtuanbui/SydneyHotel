@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SydneyHotel.Models;
+using SydneyHotel1.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Security.Claims;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security.Cookies;
-using SydneyHotel.Models;
-using SydneyHotel1.Data;
 using System.Web.UI.WebControls;
-using Microsoft.Owin.Security;
 
 namespace SydneyHotel1.Controllers
 {
@@ -30,16 +22,26 @@ namespace SydneyHotel1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "ID,FirstName,LastName,EmailAddress,Password,GenderId,DateofBirth,Role")] Account account)
+        public ActionResult Register([Bind(Include = "FirstName,LastName,EmailAddress,Password")] Account account)
         {
             account.RoleId = 1;
             account.GenderId = 3;
+
+            //// Fatal warning
+            // Password is not secured. Required hashing or encrypt password when push to use
+
+            var query = db.Accounts.Where(q => q.EmailAddress == account.EmailAddress);
+
+            if (query != null)
+            {
+                ModelState.AddModelError("", "This email is used");
+            }
 
             if (ModelState.IsValid)
             {
                 db.Accounts.Add(account);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "ObjectName", account.GenderId);
@@ -58,41 +60,38 @@ namespace SydneyHotel1.Controllers
 
             //var accounts = db.Accounts.Include(a => a.Gender).Include(a => a.Role);
 
-            var isvalidUser = account.EmailAddress == "Admin@gmail.com" && account.Password == "123456";
+            var query = db.Accounts.Include(r => r.Role).Where(a => a.EmailAddress == account.EmailAddress && a.Password == account.Password);
 
-            if (!isvalidUser)
+            var user = query.FirstOrDefault<Account>();
+
+            if (user == null)
             {
                 ModelState.AddModelError("", "Invalid Username and Password");
             }
             else
             {
-                if (Request.Cookies["UserName"] != null)
+                if (Session["UserName"] != null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
 
-                HttpCookie httpCookie = new HttpCookie("UserName", account.EmailAddress.ToString());
+                Session["ID"] = (int)user.ID;
+                Session["UserName"] = user.EmailAddress;
+                Session["Role"] = user.Role.ObjectName;
 
-                httpCookie.Expires.AddDays(3);
-
-                HttpContext.Response.SetCookie(httpCookie);
-
-                HttpCookie newCookie = Request.Cookies["UserName"];
-
-                ViewBag.UserName = newCookie;
 
                 return RedirectToAction("Index", "Home");
             }
 
-            
+
             return View();
         }
 
         public ActionResult Logout()
         {
-            if (Request.Cookies["UserName"].Value != null)
+            if (Session["ID"] != null)
             {
-                Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(-5);
+                Session.Clear();
             }
             return RedirectToAction("Index", "Home");
         }
@@ -112,6 +111,7 @@ namespace SydneyHotel1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Account account = db.Accounts.Find(id);
+           
             if (account == null)
             {
                 return HttpNotFound();

@@ -1,11 +1,11 @@
 ﻿/*css working with login area*/
 .logo {
-    color:white !important;
+    color: white !important;
 }
 
-.logo:hover {
-    color: #9b9b9b !important;
-}
+    .logo:hover {
+        color: #9b9b9b !important;
+    }
 
 .text-white {
     color: white;
@@ -33,10 +33,10 @@
         color: #9d9d9d;
     }
 
-.loginArea > a:hover {
-    text-decoration:none;
-    color:white;
-}
+        .loginArea > a:hover {
+            text-decoration: none;
+            color: white;
+        }
 
 /*css for id*/
 /*Admin panel*/
@@ -71,7 +71,62 @@
 }
 
 /*Room list css*/
-.roomImg {
-    width:500px;
+.list-box div.room-box:last-child{
+    border:none;
+}
+
+.room-box {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+  
+
+.room-info {
+    margin: 0 40px;
+    overflow-wrap: break-word;
+}
+
+    .room-info > h2 {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .room-info > p {
+        font-size: 18px;
+    }
+
+.room-image > img {
+    width: 500px;
     max-width: 100%;
+    min-width: 100px;
+}
+
+.room-last {
+    margin-right: 0;
+    margin-left: auto;
+    position: relative;
+}
+
+    .room-last > p {
+        font-size: 24px;
+    }
+
+    .room-last > a {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+.clear-border {
+    border: none;
+}
+
+.room-submit-btn {
+    margin-left: 293px;
+}
+
+.fill-form {
+    margin-top: 20px;
 }
