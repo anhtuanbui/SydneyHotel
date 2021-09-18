@@ -10,7 +10,7 @@
         {
             <form method="post" action="/Account/Logout">
                 <div class="input-group flex-box">
-                    <a class="btn btn-link" href="#">@Session["UserName"]</a>
+                    <a class="btn btn-link" href="/Account/Manage">@Session["UserName"]</a>
                     <button type="submit" name="Logout" class="btn btn-link">Logout</button>
                 </div>
             </form>

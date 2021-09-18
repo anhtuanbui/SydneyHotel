@@ -1,0 +1,131 @@
+﻿@model SydneyHotel.Models.Account
+
+@{
+    IEnumerable<SydneyHotel.Models.Booking> bookings = ViewBag.Bookings;
+    IEnumerable<SydneyHotel.Models.EventRegister> eventRegisters = ViewBag.EventRegisters;
+}
+
+<div class="manage">
+    <div class="manage-head row">
+        <div class="col-md-10">
+            <h2>
+                <span>@Model.FirstName</span>
+                <span>@Model.LastName</span>
+            </h2>
+        </div>
+        <div class="col-md-2 edit-profile"><a class="btn btn-default" href="/Account/EditProfile">Edit Profile</a></div>
+    </div>
+    <hr />
+
+    @* Tap code go here *@
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#About">About</a></li>
+        <li><a data-toggle="tab" href="#Booking">Booking</a></li>
+        <li><a data-toggle="tab" href="#Event">Event</a></li>
+    </ul>
+
+
+    @* About tap content *@
+    <div class="tab-content">
+        <div id="About" class="tab-pane fade in active">
+
+            <dl class="dl-horizontal about-info">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EmailAddress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Password)
+                </dt>
+
+                <dd>
+                    <a class="btn btn-default btn-change-password" href="/Account/ChangePassword">Change Password</a>
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateofBirth)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateofBirth)
+                </dd>
+
+                <dt>
+                    Gender
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Gender.ObjectName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+            </dl>
+        </div>
+
+        @* Booking *@
+        <div id="Booking" class="tab-pane fade list-box">
+            @foreach (var booking in bookings)
+            {
+                <div class="room-box">
+                    <div class="room-image">
+                        <img class="room-img" src="~/Images/@booking.Room.Image" />
+                    </div>
+                    <div class="room-info">
+                        <h2 class="title">@booking.Room.ObjectName</h2>
+                        <p class="item">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Start date: @booking.StartDate    
+                            <span class="glyphicon glyphicon-calendar" style="margin-left:20px;"></span> End date: @booking.EndDate
+                        </p>
+                        <p class="item">
+                            <span class="glyphicon glyphicon-time"></span> @booking.Time.ObjectName
+                        </p>
+                        <p class="item">Room type: @booking.Room.RoomType.ObjectName</p>
+                        <p class="item">Capacity: @booking.Room.Space</p>
+
+                    </div>
+                    <div class="room-cancel-btn">
+                        <a class="btn btn-default" href="/Booking/Cancel/@booking.ID">Cancel</a>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+        @* Events *@
+        <div id="Event" class="tab-pane fade">
+            <div class="event-list">
+                @foreach (var eventRegister in eventRegisters)
+                {
+                    <div class="event-box">
+                        <h2><a href="/Event/Details/@eventRegister.Event.Id">@eventRegister.Event.ObjectName</a></h2>
+                        <p><span class="glyphicon glyphicon-calendar"></span>@eventRegister.Event.StartDate <span class="glyphicon glyphicon-time" style="margin-left:20px;"></span>@eventRegister.Event.EventTime.EventTimeView</p>
+                        <p>@eventRegister.Event.Description</p>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+

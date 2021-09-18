@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SydneyHotel.Models.Event>
+
+<div class="event-list-head row">
+    <div class="col-md-10">
+        <h1>Events</h1>
+
+    </div>
+    <div class="col-md-2 btn-cover">
+        <p class="btn btn-default create-event-btn">
+            @if (Session["ID"] != null)
+            {
+                <a href="/Event/Create">Create Event</a>
+
+            }
+            else
+            {
+                <a href="/Account/Login">Create Event</a>
+            }
+        </p>
+
+    </div>
+</div>
+
+<div class="event-list">
+    @foreach (var item in Model)
+    {
+        <div class="event-box">
+            <h2><a href="/Event/Details/@item.Id">@item.ObjectName</a></h2>
+            <p><span class="glyphicon glyphicon-calendar"></span>@item.StartDate <span class="glyphicon glyphicon-time" style="margin-left:20px;"></span>@item.EventTime.EventTimeView</p>
+            <p>@item.Description</p>
+
+        </div>
+    }
+</div>

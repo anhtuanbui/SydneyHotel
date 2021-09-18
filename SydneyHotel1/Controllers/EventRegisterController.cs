@@ -7,9 +7,35 @@ using System.Web.Mvc;
 
 namespace SydneyHotel1.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventRegisterController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
+
+        [Authorize(Roles = "Admin, User")]
+        public ActionResult Attend(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var events = db.Events.Find(id);
+            if (events == null)
+            {
+                return HttpNotFound();
+            }
+
+            EventRegister eventRegister = new EventRegister();
+
+            eventRegister.EventId = (int)id;
+            eventRegister.AccountId = (int)Session["ID"];
+            eventRegister.EventRoleId = 1; // Role == Attendee
+
+            db.EventRegisters.Add(eventRegister);
+            db.SaveChanges();
+
+            return RedirectToAction($"Details/{id}", "Event");
+        }
 
         // GET: EventRegister
         public ActionResult Index()

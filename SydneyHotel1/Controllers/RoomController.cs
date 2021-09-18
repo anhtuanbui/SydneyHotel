@@ -11,9 +11,18 @@ using System.Web.Mvc;
 
 namespace SydneyHotel1.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoomController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
+
+
+        [AllowAnonymous]
+        public ActionResult List()
+        {
+            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType).Where(r => r.Image != null);
+            return View(rooms.ToList());
+        }
 
         public void UploadImage(Room room)
         {
@@ -38,11 +47,6 @@ namespace SydneyHotel1.Controllers
             }
         }
 
-        public ActionResult List()
-        {
-            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType).Where(r => r.Image != null);
-            return View(rooms.ToList());
-        }
 
         // GET: Room
         public ActionResult Index()

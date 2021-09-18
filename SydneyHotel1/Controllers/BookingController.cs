@@ -9,12 +9,23 @@ using System.Web.Mvc;
 
 namespace SydneyHotel1.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
 
+        // Cancel booking for user
+        
+        public ActionResult Cancel(int id)
+        {
+            Booking booking = db.Bookings.Find(id);
+            db.Bookings.Remove(booking);
+            db.SaveChanges();
+            return RedirectToAction("Manage", "Account");
+        }
         // Allow user to use this page
         // GET
+        [AllowAnonymous]
         public ActionResult Room(int? id)
         {
             if (id == null)
@@ -35,6 +46,7 @@ namespace SydneyHotel1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Room([Bind(Include = "ID,NumberOfPeople,StartDate,EndDate,TimeId")] Booking booking, int? id)
         {
             if (id == null)
@@ -55,7 +67,7 @@ namespace SydneyHotel1.Controllers
             {
                 db.Bookings.Add(booking);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Manage", "Account");
             }
 
             ViewBag.TimeId = new SelectList(db.Times, "Id", "ObjectName", booking.TimeId);
@@ -64,6 +76,7 @@ namespace SydneyHotel1.Controllers
 
 
         // GET: Booking
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var bookings = db.Bookings.Include(b => b.Account).Include(b => b.Room).Include(b => b.Time);
@@ -71,6 +84,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: Booking/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -86,6 +100,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: Booking/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.AccountId = new SelectList(db.Accounts, "ID", "FirstName");
@@ -99,6 +114,7 @@ namespace SydneyHotel1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,RoomID,AccountId,NumberOfPeople,StartDate,EndDate,TimeId,Message")] Booking booking)
         {
             if (ModelState.IsValid)
@@ -115,6 +131,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: Booking/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -137,6 +154,7 @@ namespace SydneyHotel1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,RoomID,AccountId,NumberOfPeople,StartDate,EndDate,TimeId,Message")] Booking booking)
         {
             if (ModelState.IsValid)
@@ -152,6 +170,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: Booking/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -169,6 +188,7 @@ namespace SydneyHotel1.Controllers
         // POST: Booking/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Booking booking = db.Bookings.Find(id);

@@ -2,73 +2,76 @@
 
 @{
     ViewBag.Title = "Details";
+
+    IEnumerable<SydneyHotel.Models.EventRegister> organisers = ViewBag.Organisers;
+    IEnumerable<SydneyHotel.Models.EventRegister> attendees = ViewBag.Attendees;
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-md-10">
+        <h2>Details</h2>
 
-<div>
+    </div>
+    <div class="col-md-2 btn-cover">
+
+        @{
+            if (ViewBag.EventRegister != null)
+            {
+                <p class="glyphicon glyphicon-ok create-event-btn">Attended</p>
+            }
+            else
+            {
+
+
+                <p class="btn btn-default create-event-btn">
+                    @if (Session["ID"] != null)
+                    {
+                        <a href="/EventRegister/Attend/@Model.Id">Attend</a>
+
+                    }
+                    else
+                    {
+                        <a href="/Account/Login">Attend</a>
+                    }
+                </p>
+            }
+        }
+
+
+    </div>
+</div>
+
+<div class="event-detail">
     <h4>Event</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EventTime.EventTimeView)
-        </dt>
+    <h2>@Model.ObjectName</h2>
+    <p class="glyphicon glyphicon-calendar date"><span>@Model.StartDate</span></p>
+    <p class="glyphicon glyphicon-time time"><span>@Model.EventTime.EventTimeView</span></p>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventTime.EventTimeView)
-        </dd>
+    <p>
+        <span class="glyphicon glyphicon-user"></span>
+        @{
+            foreach (var organiser in organisers)
+            {
+                <span>@organiser.Account.FirstName</span>
+                <span>@organiser.Account.LastName</span>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventType.Description)
-        </dt>
+            }
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.EventType.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Room.ObjectName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Room.ObjectName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ObjectName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ObjectName)
-        </dd>
-
-    </dl>
+    </p>
+    <p>@Model.Description</p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<h4>Attendees</h4>
+
+<div class="attendees">
+    @foreach (var attendee in attendees)
+    {
+        <div class="attendee">
+            <img src="~/Icons/user.png"/>
+            <span>@attendee.Account.FirstName</span>
+            <span>@attendee.Account.LastName</span>
+        </div>
+    }
+</div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Web Design and Development</title>
-    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/Content/styles.css" type="text/css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Booking", "List", "Room")</li>
-                    <li>@Html.ActionLink("Event", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Event", "List", "Event")</li>
                 </ul>
             </div>
             @Html.Partial("_NavRegisterLogin")
@@ -31,10 +31,13 @@
     </div>
     <div class="container body-content">
         @Html.Partial("_AdminPanel")
-        @RenderBody()
+        <div class="render-body">
+            @RenderBody()
+
+        </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Anh Tuan</p>
         </footer>
     </div>
 

@@ -1,4 +1,14 @@
-﻿/*css working with login area*/
+﻿dl, dd, dt {
+    padding: 5px 0;
+    font-size: 1.1em;
+}
+
+.render-body {
+    min-height: calc(100vh - 200px);
+}
+
+/*css working with login area*/
+
 .logo {
     color: white !important;
 }
@@ -40,28 +50,36 @@
 
 /*css for id*/
 /*Admin panel*/
-#AdminPanel {
+.left-panel {
     width: 12%;
     position: absolute;
     left: 0;
     border-radius: 5px;
     min-width: 150px;
+    background-color: #f8f8f8;
 }
 
-    #AdminPanel > p {
-        padding: 5px;
-        background-color: #eeeeee;
+    .left-panel > p {
+        padding: 10px;
         margin: 0;
     }
 
-        #AdminPanel > p:hover {
-            background-color: #cccccc;
+        .left-panel > p:hover {
+            background-color: #f2f2f2;
         }
 
-    #AdminPanel > a:hover {
-        text-decoration: none;
+    .left-panel a {
+        color: black;
     }
 
+        .left-panel a:hover {
+            text-decoration: none;
+            color:#4d4d4d;
+        }
+
+.left-panel-title {
+    padding: 5px;
+}
 
 /*css for table div*/
 .table-container {
@@ -71,8 +89,8 @@
 }
 
 /*Room list css*/
-.list-box div.room-box:last-child{
-    border:none;
+.list-box div.room-box:last-child {
+    border: none;
 }
 
 .room-box {
@@ -81,7 +99,7 @@
     border-bottom: 1px solid #cccccc;
 }
 
-  
+
 
 .room-info {
     margin: 0 40px;
@@ -119,6 +137,10 @@
         right: 0;
     }
 
+.room-cancel-btn {
+    margin-right: 0;
+    margin-left: auto;
+}
 .clear-border {
     border: none;
 }
@@ -129,4 +151,99 @@
 
 .fill-form {
     margin-top: 20px;
+}
+
+
+/*CSS for event list*/
+.create-event-btn {
+    margin-top: 28px;
+}
+
+    .create-event-btn > a {
+        color: black;
+    }
+
+        .create-event-btn > a:hover {
+            text-decoration: none;
+            color: black;
+        }
+
+.event-list div:last-child {
+    border: none;
+}
+
+.event-box {
+    border-bottom: 1px solid #cccccc;
+}
+
+    .event-box a {
+        color: black;
+    }
+
+        .event-box a:hover {
+            text-decoration: none;
+        }
+
+    .event-box > p > span {
+        padding: 5px;
+    }
+
+.date {
+    margin-right: 20px;
+}
+
+    .date span, .time span {
+        padding: 5px;
+    }
+
+.text-description {
+    resize: none;
+    width: 100%;
+}
+
+.event-detail {
+    border-bottom: 1px solid #cccccc;
+}
+
+/*CSS for attendee*/
+.attendees div:last-child {
+    border: none;
+}
+
+.attendee {
+    padding: 10px 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+    .attendee img {
+        width: 30px;
+        margin-right: 5px;
+    }
+
+
+/*CSS for manage page*/
+.manage a {
+    color:black;
+}
+
+.manage-head {
+    padding-top: 20px;
+    vertical-align:middle;
+}
+
+.about-info {
+    margin-top: 20px;
+}
+
+.edit-profile {
+    margin-top:15px;
+}
+
+.btn-change-password {
+    position:relative;
+    top:-5px;
+}
+
+.glyphicon {
+
 }

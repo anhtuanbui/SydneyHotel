@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace SydneyHotel1.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventTimeController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
