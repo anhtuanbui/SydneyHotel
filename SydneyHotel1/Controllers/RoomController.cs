@@ -18,10 +18,11 @@ namespace SydneyHotel1.Controllers
 
 
         [AllowAnonymous]
-        public ActionResult List()
+        public ActionResult List(string text = "")
         {
-            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType).Where(r => r.Image != null);
-            return View(rooms.ToList());
+            var rooms = db.Rooms.Include(r => r.Availability).Include(r => r.RoomType)
+                .Where(r => r.Image != null && (r.ObjectName.Contains(text) || r.RoomType.ObjectName.Contains(text)));
+            return View(rooms);
         }
 
         public void UploadImage(Room room)

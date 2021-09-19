@@ -15,10 +15,11 @@ namespace SydneyHotel1.Controllers
         private SydneyHotel1Context db = new SydneyHotel1Context();
 
         [AllowAnonymous]
-        public ActionResult List()
+        public ActionResult List(string text = "")
         {
-            var events = db.Events.Include(e => e.EventTime).Include(e => e.EventType).Include(e => e.Room);
-            return View(events.ToList());
+            var events = db.Events.Include(e => e.EventTime).Include(e => e.EventType).Include(e => e.Room)
+                .Where(e => e.ObjectName.Contains(text) || e.Description.Contains(text));
+            return View(events);
         }
 
         // GET: Event/Details/5

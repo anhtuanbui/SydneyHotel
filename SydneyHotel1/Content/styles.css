@@ -53,6 +53,11 @@ dl, dd, dt {
     border-top: 5px solid #f9f9f9;
 }
 
+    .navbar-inverse .navbar-nav > li > a:active {
+        border-bottom: 5px solid #00589b;
+        border-top: 5px solid #f9f9f9;
+    }
+
     .navbar-inverse .navbar-nav > li > a:hover {
         /*background-color: #00589b;*/
         color: #4d4d4d;
@@ -288,4 +293,9 @@ dl, dd, dt {
 }
 
 .glyphicon {
+}
+
+/*Search field*/
+.search-field {
+    margin-top: 20px;
 }
