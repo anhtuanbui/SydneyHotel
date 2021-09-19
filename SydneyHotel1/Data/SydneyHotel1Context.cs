@@ -41,5 +41,6 @@ namespace SydneyHotel1.Data
 
         public System.Data.Entity.DbSet<SydneyHotel.Models.RoomType> RoomTypes { get; set; }
 
+        public System.Data.Entity.DbSet<SydneyHotel.Models.Documentation> Documentations { get; set; }
     }
 }

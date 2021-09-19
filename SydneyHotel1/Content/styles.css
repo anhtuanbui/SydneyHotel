@@ -11,13 +11,13 @@ dl, dd, dt {
 
 
 .render-body {
-    min-height: calc(100vh - 180px);
+    min-height: calc(100vh - 200px);
     padding-top: 10px;
 }
 
 .body-content {
     box-shadow: 1px 0px 10px 4px #f2f2f2;
-    min-height: calc(100vh - 9.5vh);
+    min-height: calc(100vh - 8vh);
     background-color: white;
 }
 
@@ -27,6 +27,7 @@ dl, dd, dt {
     background-color: #f9f9f9;
     border-bottom: none;
     box-shadow: 0px 1px 10px 4px #dddddd;
+    z-index: 10;
 }
 
 .navbar-inverse .navbar-brand {
@@ -128,6 +129,7 @@ dl, dd, dt {
 .left-panel-title {
     padding: 5px;
 }
+
 
 /*css for table div*/
 .table-container {
@@ -302,12 +304,24 @@ dl, dd, dt {
 }
 
 /*Documentation */
-.docs {
 
+.docs div:last-child {
+    border: none;
 }
+
+.docs a:focus {
+    text-decoration: none;
+}
+
+.docs-section {
+    border-bottom: 1px solid #eeeeee;
+    padding: 10px 0;
+}
+
 .docs img {
-    display:block;
-    width:50%;
+    display: block;
+    width: 70%;
+    min-width: 300px;
     margin: 20px auto;
     border: 2px solid #8a8a8a;
 }

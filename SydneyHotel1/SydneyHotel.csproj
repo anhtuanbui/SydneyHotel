@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AvailabilityController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventRegisterController.cs" />
     <Compile Include="Controllers\EventRoleController.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Documentation.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventRegister.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -360,6 +362,11 @@
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Documentation\Create.cshtml" />
+    <Content Include="Views\Documentation\Delete.cshtml" />
+    <Content Include="Views\Documentation\Details.cshtml" />
+    <Content Include="Views\Documentation\Edit.cshtml" />
+    <Content Include="Views\Documentation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

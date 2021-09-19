@@ -1,9 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using SydneyHotel1.Data;
+using System.Web.Mvc;
 
 namespace SydneyHotel1.Controllers
 {
     public class HomeController : Controller
     {
+        SydneyHotel1Context db = new SydneyHotel1Context();
+
         public ActionResult Index()
         {
             return View();
@@ -11,7 +14,8 @@ namespace SydneyHotel1.Controllers
 
         public ActionResult Document()
         {
-            return View();
+            var docs = db.Documentations;
+            return View(docs);
         }
 
     }
