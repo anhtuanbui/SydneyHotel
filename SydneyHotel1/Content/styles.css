@@ -1,22 +1,59 @@
-﻿dl, dd, dt {
+﻿body {
+    font-size: 1.5rem;
+    background-color: #fcfcfc;
+}
+
+dl, dd, dt {
     padding: 5px 0;
     font-size: 1.1em;
 }
 
+
 .render-body {
     min-height: calc(100vh - 200px);
+    padding-top: 10px;
 }
 
-/*css working with login area*/
-
-.logo {
-    color: white !important;
+.body-content {
+    box-shadow: 1px 0px 10px 4px #f2f2f2;
+    min-height: calc(100vh - 8vh);
+    background-color: white;
 }
 
-    .logo:hover {
-        color: #9b9b9b !important;
+/*All modified bootstrap css*/
+/*CSS for navbar*/
+.navbar {
+    background-color: #f9f9f9;
+    border-bottom: none;
+    box-shadow: 0px 1px 10px 4px #dddddd;
+}
+
+.navbar-inverse .navbar-brand {
+    color: black;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    text-shadow: 2px 2px 4px #cccccc ;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav > li > a, a, .navbar-inverse .btn-link {
+    color: #4d4d4d;
+}
+
+    a:hover, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .btn-link:hover {
+        color: #8a8a8a;
+        text-decoration: none;
     }
 
+    .navbar-inverse .navbar-nav > li > a:hover {
+        background-color: #00589b;
+        color:white;
+    }
+
+/*css working with login area*/
 .text-white {
     color: white;
 }
@@ -40,23 +77,22 @@
 
     .loginArea > a {
         padding: 10px;
-        color: #9d9d9d;
     }
 
         .loginArea > a:hover {
             text-decoration: none;
-            color: white;
         }
 
 /*css for id*/
 /*Admin panel*/
 .left-panel {
-    width: 12%;
+    width: 10.5%;
     position: absolute;
     left: 0;
     border-radius: 5px;
     min-width: 150px;
-    background-color: #f8f8f8;
+    background-color: white;
+    box-shadow: 1px 0 10px 4px #f2f2f2;
 }
 
     .left-panel > p {
@@ -65,7 +101,7 @@
     }
 
         .left-panel > p:hover {
-            background-color: #f2f2f2;
+            background-color: #fbfbfb;
         }
 
     .left-panel a {
