@@ -259,7 +259,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Icons\user.png" />
-    <Content Include="readme.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -361,7 +360,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Documentation\Create.cshtml" />
     <Content Include="Views\Documentation\Delete.cshtml" />
     <Content Include="Views\Documentation\Details.cshtml" />
