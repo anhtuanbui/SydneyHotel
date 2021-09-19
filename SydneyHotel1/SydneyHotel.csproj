@@ -236,6 +236,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\About.png" />
+    <Content Include="Assets\admin.png" />
+    <Content Include="Assets\Booking.png" />
+    <Content Include="Assets\Events.png" />
+    <Content Include="Assets\Mayfair-Hotel-Meetings-and-Events.jpg" />
+    <Content Include="Assets\Mayfair-Hotel-Opal-Boardroom.jpg" />
+    <Content Include="Assets\meetingSlider-gb-04-mobile.jpg" />
+    <Content Include="Assets\MyBooking.png" />
+    <Content Include="Assets\MyEvent.png" />
+    <Content Include="Assets\novotel-ambassador-gangnam-seoul.jpg" />
+    <Content Include="Assets\u-shape.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

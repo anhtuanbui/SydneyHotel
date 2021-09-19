@@ -1,6 +1,7 @@
 ﻿body {
     font-size: 1.5rem;
     background-color: #fcfcfc;
+    font-weight: 400;
 }
 
 dl, dd, dt {
@@ -298,4 +299,15 @@ dl, dd, dt {
 /*Search field*/
 .search-field {
     margin-top: 20px;
+}
+
+/*Documentation */
+.docs {
+
+}
+.docs img {
+    display:block;
+    width:50%;
+    margin: 20px auto;
+    border: 2px solid #8a8a8a;
 }
