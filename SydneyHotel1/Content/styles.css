@@ -10,13 +10,13 @@ dl, dd, dt {
 
 
 .render-body {
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 180px);
     padding-top: 10px;
 }
 
 .body-content {
     box-shadow: 1px 0px 10px 4px #f2f2f2;
-    min-height: calc(100vh - 8vh);
+    min-height: calc(100vh - 9.5vh);
     background-color: white;
 }
 
@@ -29,28 +29,34 @@ dl, dd, dt {
 }
 
 .navbar-inverse .navbar-brand {
-    color: black;
+    color: #1e1e1e;
     font-weight: 700;
     font-size: 2.5rem;
 }
 
-.navbar-inverse .navbar-brand:hover {
-    text-shadow: 2px 2px 4px #cccccc ;
-    color: black;
-}
+    .navbar-inverse .navbar-brand:hover {
+        text-shadow: 2px 2px 4px #cccccc;
+        color: black;
+    }
 
 .navbar-inverse .navbar-nav > li > a, a, .navbar-inverse .btn-link {
     color: #4d4d4d;
 }
 
-    a:hover, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .btn-link:hover {
+    a:hover, .navbar-inverse .btn-link:hover {
         color: #8a8a8a;
         text-decoration: none;
     }
 
+.navbar-inverse .navbar-nav > li > a {
+    border-bottom: 5px solid #f9f9f9;
+    border-top: 5px solid #f9f9f9;
+}
+
     .navbar-inverse .navbar-nav > li > a:hover {
-        background-color: #00589b;
-        color:white;
+        /*background-color: #00589b;*/
+        color: #4d4d4d;
+        border-bottom: 5px solid #00589b;
     }
 
 /*css working with login area*/
@@ -110,7 +116,7 @@ dl, dd, dt {
 
         .left-panel a:hover {
             text-decoration: none;
-            color:#4d4d4d;
+            color: #4d4d4d;
         }
 
 .left-panel-title {
@@ -177,6 +183,7 @@ dl, dd, dt {
     margin-right: 0;
     margin-left: auto;
 }
+
 .clear-border {
     border: none;
 }
@@ -259,12 +266,12 @@ dl, dd, dt {
 
 /*CSS for manage page*/
 .manage a {
-    color:black;
+    color: black;
 }
 
 .manage-head {
     padding-top: 20px;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .about-info {
@@ -272,14 +279,13 @@ dl, dd, dt {
 }
 
 .edit-profile {
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .btn-change-password {
-    position:relative;
-    top:-5px;
+    position: relative;
+    top: -5px;
 }
 
 .glyphicon {
-
 }
