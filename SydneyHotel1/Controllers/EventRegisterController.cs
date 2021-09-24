@@ -7,12 +7,11 @@ using System.Web.Mvc;
 
 namespace SydneyHotel1.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class EventRegisterController : Controller
     {
         private SydneyHotel1Context db = new SydneyHotel1Context();
 
-        [Authorize(Roles = "Admin, User")]
         public ActionResult Attend(int? id)
         {
             if (id == null)
@@ -38,6 +37,8 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: EventRegister
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var eventRegisters = db.EventRegisters.Include(e => e.Account).Include(e => e.Event).Include(e => e.EventRole);
@@ -45,6 +46,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: EventRegister/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -60,6 +62,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: EventRegister/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.AccountId = new SelectList(db.Accounts, "ID", "FirstName");
@@ -73,6 +76,7 @@ namespace SydneyHotel1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,EventRoleId,EventId,AccountId")] EventRegister eventRegister)
         {
             if (ModelState.IsValid)
@@ -89,6 +93,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: EventRegister/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -111,6 +116,7 @@ namespace SydneyHotel1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,EventRoleId,EventId,AccountId")] EventRegister eventRegister)
         {
             if (ModelState.IsValid)
@@ -126,6 +132,7 @@ namespace SydneyHotel1.Controllers
         }
 
         // GET: EventRegister/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -143,6 +150,7 @@ namespace SydneyHotel1.Controllers
         // POST: EventRegister/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             EventRegister eventRegister = db.EventRegisters.Find(id);
