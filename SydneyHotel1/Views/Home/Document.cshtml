@@ -19,7 +19,12 @@
             </div>
             <div id="collapse-@doc.ID" class="panel-collapse collapse @(doc.ID == 2 ? "in" : "")">
                 <div class="panel-body">
-                    <img src="@doc.ImgURL.Trim('~')" alt="@doc.Title">
+                    @{
+                        if (doc.ImgURL != "")
+                        {
+                            <img src="@doc.ImgURL.Trim('~')" alt="@doc.Title">
+                        }
+                    }
 
                     <p>
                         @Html.Raw(doc.Content)

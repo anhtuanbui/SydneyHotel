@@ -8,6 +8,7 @@ namespace SydneyHotel.Models
 
         [Required]
         [StringLength(256)]
+        [Display(Name = "Name")]
         public string ObjectName { get; set; }
     }
 }
